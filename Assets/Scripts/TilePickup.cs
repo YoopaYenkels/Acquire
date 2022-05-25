@@ -5,12 +5,8 @@ using TMPro;
 
 
 public class TilePickup : MonoBehaviour
-{
-    
-    //List<KeyValuePair<char, int>> tiles = new();
-
+{   
     public GameObject tileCopy;
-
 
     GameObject spawnedTile;
     Vector3 mousePos;
@@ -26,8 +22,7 @@ public class TilePickup : MonoBehaviour
         {          
             for (int j = 1; j <= 12; j++)
             {
-                //tiles.Add(new KeyValuePair<char, int>((char)(i - 1 + 65), j));
-                TilePool.Coords coordsToAdd = new TilePool.Coords(j, (char)(i - 1 + 65));
+                TilePool.Tile coordsToAdd = new TilePool.Tile(j, (char)(i - 1 + 65));
                 tilePool.tileCoords.Add(coordsToAdd);
             }
         }
@@ -37,6 +32,7 @@ public class TilePickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // move tile with mouse
         if (spawnedTile)
         {
             mousePos = Input.mousePosition;
@@ -49,6 +45,8 @@ public class TilePickup : MonoBehaviour
         }
     }
 
+
+    // draw a random tile from the pool
     private void OnMouseDown()
     {
         int tileIndex = Random.Range(0, tilePool.tileCoords.Count - 1);
@@ -57,11 +55,10 @@ public class TilePickup : MonoBehaviour
        
         spawnedTile.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = 
             $"{tilePool.tileCoords[tileIndex].col}-{tilePool.tileCoords[tileIndex].row}";
+
         spawnedTile.GetComponent<LooseTile>().col = tilePool.tileCoords[tileIndex].col;
         spawnedTile.GetComponent<LooseTile>().row = tilePool.tileCoords[tileIndex].row - 64;
-
-        //Debug.Log($"You received tile {tiles[tileIndex - 1].Value}-{tiles[tileIndex - 1].Key} | Index: {tileIndex}");
-        Debug.Log($"{tilePool.tileCoords.Count} tiles remaining");
+    
         tilePool.tileCoords.RemoveAt(tileIndex);
     }
 }

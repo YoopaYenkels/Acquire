@@ -378,6 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  chainsData: {fileID: 11400000, guid: 9640a3626f3cdb146aa453db57877395, type: 2}
 --- !u!50 &-4594963977375501840
 Rigidbody2D:
   serializedVersion: 4

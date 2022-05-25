@@ -9,7 +9,7 @@ public class LooseTile : MonoBehaviour
     public int row;
     public int col;
 
-    bool canPlace;
+    bool matchesSpace;
 
     int targetCol;
     int targetRow;
@@ -17,25 +17,18 @@ public class LooseTile : MonoBehaviour
     GridManager gridManager;
     Collider2D tileTarget;
 
+
     void Start()
     {
-       gridManager = FindObjectOfType<GridManager>();        
+       gridManager = FindObjectOfType<GridManager>();
     }
+
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canPlace)
+        if (Input.GetMouseButtonDown(0) && matchesSpace && gridManager.PlaceTile(tileTarget, targetRow, targetCol))
         {
             Destroy(gameObject);
-
-            // show placed tile
-            tileTarget.GetComponent<SpriteRenderer>().color = Color.black;
-            tileTarget.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
-
-            Debug.Log($"Placed a tile at : Row - {targetRow} // Column - {targetCol}");
-
-            // update grid data
-            gridManager.grid[targetRow - 1].tiles[targetCol - 1].placed = true;
         }
     }
 
@@ -47,8 +40,7 @@ public class LooseTile : MonoBehaviour
 
         if (col == targetCol && row == targetRow)
         {
-            canPlace = true;
-
+            matchesSpace = true;
             tileTarget = collision;
         }
     }
@@ -56,6 +48,7 @@ public class LooseTile : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("BoardSpace")) 
-            canPlace = false;
+            matchesSpace = false;
     }
+
 }
