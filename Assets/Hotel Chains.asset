@@ -12,33 +12,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ccc026f78d6c043b0986e559546f2d, type: 3}
   m_Name: Hotel Chains
   m_EditorClassIdentifier: 
-  chainsAvail: 0
+  chainsAvail: 6
   hotelChains:
   - chainName: Tower
     color: {r: 1, g: 0, b: 0, a: 1}
-    size: 3
-    active: 1
+    size: 0
+    isActive: 0
+    isSafe: 0
+    tilesInChain: []
   - chainName: Luxor
-    color: {r: 1, g: 0.88235295, b: 0, a: 1}
-    size: 4
-    active: 1
+    color: {r: 1, g: 0.8166218, b: 0, a: 1}
+    size: 0
+    isActive: 0
+    isSafe: 0
+    tilesInChain: []
   - chainName: Festival
     color: {r: 0.03198047, g: 0.7264151, b: 0.21517491, a: 1}
-    size: 5
-    active: 1
+    size: 2
+    isActive: 1
+    isSafe: 0
+    tilesInChain:
+    - col: 2
+      row: 65
+      placed: 1
+      partOfChain: 1
+      chain: 3
+      isChainIndicator: 1
+    - col: 1
+      row: 65
+      placed: 1
+      partOfChain: 1
+      chain: 3
+      isChainIndicator: 0
   - chainName: American
     color: {r: 0, g: 0.11529214, b: 0.6698113, a: 1}
-    size: 6
-    active: 1
+    size: 0
+    isActive: 0
+    isSafe: 0
+    tilesInChain: []
   - chainName: Worldwide
     color: {r: 0.4245283, g: 0.28279978, b: 0.026699847, a: 1}
-    size: 4
-    active: 1
+    size: 0
+    isActive: 0
+    isSafe: 0
+    tilesInChain: []
   - chainName: Continental
     color: {r: 0.08069295, g: 0.7633764, b: 0.8018868, a: 1}
-    size: 5
-    active: 1
+    size: 0
+    isActive: 0
+    isSafe: 0
+    tilesInChain: []
   - chainName: Imperial
     color: {r: 0.9056604, g: 0.17657521, b: 0.80081916, a: 1}
-    size: 3
-    active: 1
+    size: 0
+    isActive: 0
+    isSafe: 0
+    tilesInChain: []

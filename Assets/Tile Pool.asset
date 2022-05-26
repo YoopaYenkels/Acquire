@@ -13,323 +13,339 @@ MonoBehaviour:
   m_Name: Tile Pool
   m_EditorClassIdentifier: 
   tileCoords:
-  - col: 4
-    row: 65
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 7
-    row: 65
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 11
-    row: 65
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 12
-    row: 65
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 2
-    row: 66
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 6
-    row: 66
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 7
-    row: 66
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 8
-    row: 66
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 10
-    row: 66
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 12
-    row: 66
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 1
-    row: 67
-    placed: 0
-    partOfChain: 0
-    chain: 0
   - col: 3
-    row: 67
+    row: 65
     placed: 0
     partOfChain: 0
     chain: 0
-  - col: 4
-    row: 67
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 5
-    row: 67
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 8
-    row: 67
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 9
-    row: 67
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 10
-    row: 67
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 11
-    row: 67
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 1
-    row: 68
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 4
-    row: 68
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 5
-    row: 68
-    placed: 0
-    partOfChain: 0
-    chain: 0
+    isChainIndicator: 0
   - col: 6
-    row: 68
+    row: 65
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
   - col: 7
+    row: 65
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 8
+    row: 65
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 9
+    row: 65
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 10
+    row: 65
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 11
+    row: 65
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 12
+    row: 65
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 1
+    row: 66
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 2
+    row: 66
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 6
+    row: 66
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 1
+    row: 67
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 7
+    row: 67
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 8
+    row: 67
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 10
+    row: 67
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 11
+    row: 67
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 2
     row: 68
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
+  - col: 4
+    row: 68
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
   - col: 8
     row: 68
     placed: 0
     partOfChain: 0
     chain: 0
-  - col: 9
-    row: 68
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 10
-    row: 68
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 11
-    row: 68
-    placed: 0
-    partOfChain: 0
-    chain: 0
+    isChainIndicator: 0
   - col: 12
     row: 68
     placed: 0
     partOfChain: 0
     chain: 0
-  - col: 2
-    row: 69
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 5
-    row: 69
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 6
-    row: 69
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 7
-    row: 69
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 8
-    row: 69
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 10
-    row: 69
-    placed: 0
-    partOfChain: 0
-    chain: 0
+    isChainIndicator: 0
   - col: 1
-    row: 70
+    row: 69
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
   - col: 2
-    row: 70
+    row: 69
     placed: 0
     partOfChain: 0
     chain: 0
-  - col: 5
-    row: 70
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 7
-    row: 70
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 8
-    row: 70
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 11
-    row: 70
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 12
-    row: 70
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 1
-    row: 71
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 2
-    row: 71
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 4
-    row: 71
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 5
-    row: 71
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 8
-    row: 71
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 10
-    row: 71
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 1
-    row: 72
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 6
-    row: 72
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 7
-    row: 72
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 8
-    row: 72
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 9
-    row: 72
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 10
-    row: 72
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 11
-    row: 72
-    placed: 0
-    partOfChain: 0
-    chain: 0
-  - col: 2
-    row: 73
-    placed: 0
-    partOfChain: 0
-    chain: 0
+    isChainIndicator: 0
   - col: 3
-    row: 73
+    row: 69
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
   - col: 4
-    row: 73
+    row: 69
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
+  - col: 7
+    row: 69
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 10
+    row: 69
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 11
+    row: 69
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 12
+    row: 69
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 1
+    row: 70
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 2
+    row: 70
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
   - col: 5
-    row: 73
+    row: 70
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
+  - col: 6
+    row: 70
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 7
+    row: 70
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 9
+    row: 70
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 10
+    row: 70
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 12
+    row: 70
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 2
+    row: 71
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 3
+    row: 71
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 6
+    row: 71
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 7
+    row: 71
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 8
+    row: 71
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 9
+    row: 71
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 10
+    row: 71
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 12
+    row: 71
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 2
+    row: 72
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 3
+    row: 72
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 6
+    row: 72
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 11
+    row: 72
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
+  - col: 12
+    row: 72
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
   - col: 6
     row: 73
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
+  - col: 7
+    row: 73
+    placed: 0
+    partOfChain: 0
+    chain: 0
+    isChainIndicator: 0
   - col: 8
     row: 73
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
   - col: 9
     row: 73
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
   - col: 10
     row: 73
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
   - col: 11
     row: 73
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0
   - col: 12
     row: 73
     placed: 0
     partOfChain: 0
     chain: 0
+    isChainIndicator: 0

@@ -58,8 +58,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 982144319
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &179243195
 MonoBehaviour:
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &179243194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,9 +316,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 982144319
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -378,7 +378,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
-  chainsData: {fileID: 11400000, guid: 9640a3626f3cdb146aa453db57877395, type: 2}
 --- !u!50 &-4594963977375501840
 Rigidbody2D:
   serializedVersion: 4

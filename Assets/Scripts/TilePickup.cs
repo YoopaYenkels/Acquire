@@ -49,16 +49,19 @@ public class TilePickup : MonoBehaviour
     // draw a random tile from the pool
     private void OnMouseDown()
     {
-        int tileIndex = Random.Range(0, tilePool.tileCoords.Count - 1);
+        if (tilePool.tileCoords.Count > 0)
+        {
+            int tileIndex = Random.Range(0, tilePool.tileCoords.Count - 1);
 
-        spawnedTile = Instantiate(tileCopy, transform.position, Quaternion.identity, transform.parent = null);
-       
-        spawnedTile.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = 
-            $"{tilePool.tileCoords[tileIndex].col}-{tilePool.tileCoords[tileIndex].row}";
+            spawnedTile = Instantiate(tileCopy, transform.position, Quaternion.identity, transform.parent = null);
 
-        spawnedTile.GetComponent<LooseTile>().col = tilePool.tileCoords[tileIndex].col;
-        spawnedTile.GetComponent<LooseTile>().row = tilePool.tileCoords[tileIndex].row - 64;
-    
-        tilePool.tileCoords.RemoveAt(tileIndex);
+            spawnedTile.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                $"{tilePool.tileCoords[tileIndex].col}-{tilePool.tileCoords[tileIndex].row}";
+
+            spawnedTile.GetComponent<LooseTile>().col = tilePool.tileCoords[tileIndex].col;
+            spawnedTile.GetComponent<LooseTile>().row = tilePool.tileCoords[tileIndex].row - 64;
+
+            tilePool.tileCoords.RemoveAt(tileIndex);
+        }    
     }
 }

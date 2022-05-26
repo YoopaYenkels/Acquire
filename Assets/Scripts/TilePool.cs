@@ -19,6 +19,8 @@ public class TilePool : ScriptableObject
         [SerializeField]
         public Chains chain;
 
+        public bool isChainIndicator;
+
         public enum Chains
         {
             None,
@@ -27,7 +29,7 @@ public class TilePool : ScriptableObject
             Festival,
             American,
             Worldwide,
-            Cotinental,
+            Continental,
             Imperial
         };
 

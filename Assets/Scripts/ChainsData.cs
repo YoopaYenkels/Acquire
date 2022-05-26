@@ -12,7 +12,10 @@ public class ChainsData : ScriptableObject
         public Color color;
 
         public int size;
-        public bool active;
+        public bool isActive;
+        public bool isSafe;
+
+        public List<TilePool.Tile> tilesInChain;
     }
 
     public int chainsAvail;
