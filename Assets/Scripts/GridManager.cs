@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 [System.Serializable]
 public class BoardRow
@@ -55,6 +56,7 @@ public class GridManager : MonoBehaviour
         for (int i = 0; i < chainsData.hotelChains.Count; i++)
         {
             chainsData.hotelChains[i].size = 0;
+            chainsData.hotelChains[i].stocks = 25;
             chainsData.hotelChains[i].tilesInChain = new();
             chainsData.hotelChains[i].isActive = false;
             chainsData.hotelChains[i].isSafe = false;
@@ -92,166 +94,67 @@ public class GridManager : MonoBehaviour
         List<int> surroundingChains = new();
         mergedChainInfo = new();
 
-        bool TopTile()
+
+        bool TileAction(int row, int col, int action)
         {
             switch (action)
             {
                 case 0:
-                    if (grid[_row - 1].tiles[_col].partOfChain && !surroundingChains.Contains((int)grid[_row - 1].tiles[_col].chain))
+                    if (grid[row].tiles[col].partOfChain && !surroundingChains.Contains((int)grid[row].tiles[col].chain))
                     {
-                        surroundingChains.Add((int)grid[_row - 1].tiles[_col].chain);
+                        surroundingChains.Add((int)grid[row].tiles[col].chain);
                         surroundingChainCount += 1;
 
-                        if (chainsData.hotelChains[(int)grid[_row - 1].tiles[_col].chain - 1].isSafe)
+                        if (chainsData.hotelChains[(int)grid[row].tiles[col].chain - 1].isSafe)
                         {
                             numSafeChains += 1;
                         }
 
                         mergedChainInfo.Add(new KeyValuePair<int, int>
-                            ((int)grid[_row - 1].tiles[_col].chain - 1, chainsData.hotelChains[(int)grid[_row - 1].tiles[_col].chain - 1].size));                 
+                            ((int)grid[row].tiles[col].chain - 1, chainsData.hotelChains[(int)grid[row].tiles[col].chain - 1].size));
                     }
                     return false;
                 case 1:
-                    return grid[_row - 1].tiles[_col].placed;
+                    return grid[row].tiles[col].placed;
                 case 2:
-                    if (grid[_row - 1].tiles[_col].partOfChain)
+                    if (grid[row].tiles[col].partOfChain)
                     {
-                        chainToAddTo = (int)grid[_row - 1].tiles[_col].chain;
+                        chainToAddTo = (int)grid[row].tiles[col].chain;
                     }
                     return false;
                 case 3:
-                    if (grid[_row - 1].tiles[_col].placed && !grid[_row - 1].tiles[_col].partOfChain)
+                    if (grid[row].tiles[col].placed && !grid[row].tiles[col].partOfChain)
                     {
                         // add the already placed top tile to a new chain being created
-                        grid[_row - 1].tiles[_col].partOfChain = true;
-                        grid[_row - 1].tiles[_col].chain = (TilePool.Tile.Chains)(chainToJoin + 1);
+                        grid[row].tiles[col].partOfChain = true;
+                        grid[row].tiles[col].chain = (TilePool.Tile.Chains)(chainToJoin + 1);
 
-                        chainsData.hotelChains[chainToJoin].tilesInChain.Add(grid[_row - 1].tiles[_col]);
+                        chainsData.hotelChains[chainToJoin].tilesInChain.Add(grid[row].tiles[col]);
                         chainsData.hotelChains[chainToJoin].size += 1;
                     }
                     break;
             }
             return false;
         }
+
+        bool TopTile()
+        {
+            return TileAction(_row - 1, _col, action);
+        }
+
         bool BottomTile()
         {
-            switch (action)
-            {
-                case 0:
-                    if (grid[_row + 1].tiles[_col].partOfChain && !surroundingChains.Contains((int)grid[_row + 1].tiles[_col].chain))
-                    {
-                        surroundingChains.Add((int)grid[_row + 1].tiles[_col].chain);
-                        surroundingChainCount += 1;
-
-                        if (chainsData.hotelChains[(int)grid[_row + 1].tiles[_col].chain - 1].isSafe)
-                        {
-                            numSafeChains += 1;
-                        }
-
-                        mergedChainInfo.Add(new KeyValuePair<int, int>
-                           ((int)grid[_row + 1].tiles[_col].chain - 1, chainsData.hotelChains[(int)grid[_row + 1].tiles[_col].chain - 1].size));
-                    }
-                    return false;
-                case 1:
-                    return grid[_row + 1].tiles[_col].placed;
-                case 2:
-                    if (grid[_row + 1].tiles[_col].partOfChain)
-                    {
-                        chainToAddTo = (int)grid[_row + 1].tiles[_col].chain;
-                    }
-                    return false;
-                case 3:
-                    if (grid[_row + 1].tiles[_col].placed && !grid[_row + 1].tiles[_col].partOfChain)
-                    {
-                        grid[_row + 1].tiles[_col].partOfChain = true;
-                        grid[_row + 1].tiles[_col].chain = (TilePool.Tile.Chains)(chainToJoin + 1);
-
-                        chainsData.hotelChains[chainToJoin].tilesInChain.Add(grid[_row + 1].tiles[_col]);
-                        chainsData.hotelChains[chainToJoin].size += 1;
-                    }
-                    break;
-            }
-            return false;
+            return TileAction(_row + 1, _col, action);
         }
+
         bool LeftTile()
         {
-            switch (action)
-            {
-                case 0:
-                    if (grid[_row].tiles[_col - 1].partOfChain && !surroundingChains.Contains((int)grid[_row].tiles[_col - 1].chain))
-                    {
-                        surroundingChains.Add((int)grid[_row].tiles[_col - 1].chain);
-                        surroundingChainCount += 1;
-
-                        if (chainsData.hotelChains[(int)grid[_row].tiles[_col - 1].chain - 1].isSafe)
-                        {
-                            numSafeChains += 1;
-                        }
-
-                        mergedChainInfo.Add(new KeyValuePair<int, int>
-                           ((int)grid[_row].tiles[_col - 1].chain - 1, chainsData.hotelChains[(int)grid[_row].tiles[_col - 1].chain - 1].size));
-                    }
-                    return false;
-                case 1:
-                    return grid[_row].tiles[_col - 1].placed;
-                case 2:
-                    if (grid[_row].tiles[_col - 1].partOfChain)
-                    {
-                        chainToAddTo = (int)grid[_row].tiles[_col - 1].chain;
-                    }
-                    return false;
-                case 3:
-                    if (grid[_row].tiles[_col - 1].placed && !grid[_row].tiles[_col - 1].partOfChain)
-                    {
-                        grid[_row].tiles[_col - 1].partOfChain = true;
-                        grid[_row].tiles[_col - 1].chain = (TilePool.Tile.Chains)(chainToJoin + 1);
-
-                        chainsData.hotelChains[chainToJoin].tilesInChain.Add(grid[_row].tiles[_col - 1]);
-                        chainsData.hotelChains[chainToJoin].size += 1;
-                    }
-                    break;
-            }
-            return false;
+            return TileAction(_row, _col - 1, action);
         }
+
         bool RightTile()
         {
-            switch (action)
-            {
-                case 0:
-                    if (grid[_row].tiles[_col + 1].partOfChain && !surroundingChains.Contains((int)grid[_row].tiles[_col + 1].chain))
-                    {
-                        surroundingChains.Add((int)grid[_row].tiles[_col + 1].chain);
-                        surroundingChainCount += 1;
-
-                        if (chainsData.hotelChains[(int)grid[_row].tiles[_col + 1].chain - 1].isSafe)
-                        {
-                            numSafeChains += 1;
-                        }
-
-                        mergedChainInfo.Add(new KeyValuePair<int, int>
-                           ((int)grid[_row].tiles[_col + 1].chain - 1, chainsData.hotelChains[(int)grid[_row].tiles[_col + 1].chain - 1].size));
-                    }
-                    return false;
-                case 1:
-                    return grid[_row].tiles[_col + 1].placed;
-                case 2:
-                    if (grid[_row].tiles[_col + 1].partOfChain)
-                    {
-                        chainToAddTo = (int)grid[_row].tiles[_col + 1].chain;
-                    }
-                    return false;
-                case 3:
-                    if (grid[_row].tiles[_col + 1].placed && !grid[_row].tiles[_col + 1].partOfChain)
-                    {
-                        grid[_row].tiles[_col + 1].partOfChain = true;
-                        grid[_row].tiles[_col + 1].chain = (TilePool.Tile.Chains)(chainToJoin + 1);
-
-                        chainsData.hotelChains[chainToJoin].tilesInChain.Add(grid[_row].tiles[_col + 1]);
-                        chainsData.hotelChains[chainToJoin].size += 1;
-                    }
-                    break;
-            }
-            return false;
+            return TileAction(_row, _col + 1, action);
         }
 
         // top row
@@ -339,60 +242,18 @@ public class GridManager : MonoBehaviour
             if (!tiedForSize)
             {
                 Debug.Log($"{chainsData.hotelChains[mergedChainInfo[largestChainIndex].Key].chainName} took over!");
+                MergeChain(largestChainIndex, targetRow, targetCol);
             }
             else
             {
-                Debug.Log($"Ties must be resolved by player.");
-            }
+                List<int> tiedChains = new();
 
-            // remove the largest chain from the merged chains list, and add the defunct chain sizes to the winning chain
-            int winningChain = mergedChainInfo[largestChainIndex].Key;
-            mergedChainInfo.RemoveAt(largestChainIndex);
-
-            for (int i = 0; i < mergedChainInfo.Count; i++)
-            {
-                chainsData.hotelChains[winningChain].size += mergedChainInfo[i].Value;
-                foreach (var tile in chainsData.hotelChains[mergedChainInfo[i].Key].tilesInChain)
+                for (int i = 0; i < mergedChainInfo.Count; i++)
                 {
-                    if (tile.isChainIndicator)
-                    {
-                        tile.isChainIndicator = false;
-                        transform.GetChild(tile.row - 65).GetChild(tile.col - 1).GetComponent<SpriteRenderer>().color = Color.black;
-                        transform.GetChild(tile.row - 65).GetChild(tile.col - 1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
-                        transform.GetChild(tile.row - 65).GetChild(tile.col - 1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{tile.col}-{tile.row}";
-                    }     
-                       
-                    
-                    tile.chain = (TilePool.Tile.Chains)winningChain + 1;
-                    chainsData.hotelChains[winningChain].tilesInChain.Add(tile);
-                } 
-
-                chainsData.hotelChains[mergedChainInfo[i].Key].tilesInChain.Clear();
-                chainsData.hotelChains[mergedChainInfo[i].Key].size = 0;
-                chainsData.hotelChains[mergedChainInfo[i].Key].isActive = false;
-            }
-
-            // defunct chains are now available to found
-            chainsData.chainsAvail += mergedChainInfo.Count;
-
-            // add the placed tile to the winning chain
-            grid[targetRow - 1].tiles[targetCol - 1].chain = (TilePool.Tile.Chains)winningChain + 1;
-            grid[targetRow - 1].tiles[targetCol - 1].partOfChain = true;
-
-            chainsData.hotelChains[winningChain].tilesInChain.Add(grid[targetRow - 1].tiles[targetCol - 1]);
-            chainsData.hotelChains[winningChain].size += 1;
-
-            // add any unchained tiles to the winning chain
-            if (DoBoardAction(targetRow - 1, targetCol - 1, (int)BoardActions.AreThereUnchainedTiles))
-            {
-                chainToJoin = winningChain;
-                DoBoardAction(targetRow - 1, targetCol - 1, (int)BoardActions.CreateChain);
-            }
-
-            // SAFE CHAIN CHECK
-                if (chainsData.hotelChains[winningChain].size >= 41)
-            {
-                chainsData.hotelChains[winningChain].isSafe = true;
+                    if (mergedChainInfo[i].Value == mergedChainInfo[largestChainIndex].Value)
+                        tiedChains.Add(mergedChainInfo[i].Key);
+                }
+                StartCoroutine(ResolveTie(tiedChains, targetRow, targetCol));
             }
 
             ShowTile();
@@ -419,7 +280,7 @@ public class GridManager : MonoBehaviour
             DoBoardAction(targetRow - 1, targetCol - 1, (int)BoardActions.CreateChain);
          
             // SAFE CHAIN CHECK
-            if (chainsData.hotelChains[chainToAddTo - 1].size >= 41)
+            if (chainsData.hotelChains[chainToAddTo - 1].size >= 11)
             {
                 chainsData.hotelChains[chainToAddTo - 1].isSafe = true;
             }
@@ -454,6 +315,123 @@ public class GridManager : MonoBehaviour
         return false;     
     }
 
+    void MergeChain(int largestChainIndex, int targetRow, int targetCol)
+    {
+        // remove the largest chain from the merged chains list, and add the defunct chain sizes to the winning chain
+        int winningChain = mergedChainInfo[largestChainIndex].Key;
+        mergedChainInfo.RemoveAt(largestChainIndex);
+
+        for (int i = 0; i < mergedChainInfo.Count; i++)
+        {
+            chainsData.hotelChains[winningChain].size += mergedChainInfo[i].Value;
+            foreach (var tile in chainsData.hotelChains[mergedChainInfo[i].Key].tilesInChain)
+            {
+                if (tile.isChainIndicator)
+                {
+                    tile.isChainIndicator = false;
+                    transform.GetChild(tile.row - 65).GetChild(tile.col - 1).GetComponent<SpriteRenderer>().color = Color.black;
+                    transform.GetChild(tile.row - 65).GetChild(tile.col - 1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
+                    transform.GetChild(tile.row - 65).GetChild(tile.col - 1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{tile.col}-{tile.row}";
+                }
+
+
+                tile.chain = (TilePool.Tile.Chains)winningChain + 1;
+                chainsData.hotelChains[winningChain].tilesInChain.Add(tile);
+            }
+
+            chainsData.hotelChains[mergedChainInfo[i].Key].tilesInChain.Clear();
+            chainsData.hotelChains[mergedChainInfo[i].Key].size = 0;
+            chainsData.hotelChains[mergedChainInfo[i].Key].isActive = false;
+        }
+
+        // defunct chains are now available to found
+        chainsData.chainsAvail += mergedChainInfo.Count;
+
+        // add the placed tile to the winning chain
+        grid[targetRow - 1].tiles[targetCol - 1].chain = (TilePool.Tile.Chains)winningChain + 1;
+        grid[targetRow - 1].tiles[targetCol - 1].partOfChain = true;
+
+        chainsData.hotelChains[winningChain].tilesInChain.Add(grid[targetRow - 1].tiles[targetCol - 1]);
+        chainsData.hotelChains[winningChain].size += 1;
+
+        // add any unchained tiles to the winning chain
+        if (DoBoardAction(targetRow - 1, targetCol - 1, (int)BoardActions.AreThereUnchainedTiles))
+        {
+            chainToJoin = winningChain;
+            DoBoardAction(targetRow - 1, targetCol - 1, (int)BoardActions.CreateChain);
+        }
+
+        // SAFE CHAIN CHECK
+        if (chainsData.hotelChains[winningChain].size >= 11)
+        {
+            chainsData.hotelChains[winningChain].isSafe = true;
+        }
+    }
+
+    IEnumerator ResolveTie(List<int> tiedChains, int targetRow, int targetCol)
+    {
+        mergeInfo.SetActive(true);
+        mergeInfo.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
+        for (int i = 0; i < mergedChainInfo.Count; i++)
+        {
+            mergeInfo.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text += 
+                $"{mergedChainInfo[i].Key + 1} = {chainsData.hotelChains[mergedChainInfo[i].Key].chainName}\n";
+        }
+
+        int chosenChain = 0;
+        int chosenChainIndex = 0;
+        bool choseChain = false;
+
+        while (!choseChain)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1) && tiedChains.Contains(0))
+            {
+                chosenChain = 0;
+                choseChain = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && tiedChains.Contains(1))
+            {
+                chosenChain = 1;
+                choseChain = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && tiedChains.Contains(2))
+            {
+                chosenChain = 2;
+                choseChain = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && tiedChains.Contains(3))
+            {
+                chosenChain = 3;
+                choseChain = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha5) && tiedChains.Contains(4))
+            {
+                chosenChain = 4;
+                choseChain = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha6) && tiedChains.Contains(5))
+            {
+                chosenChain = 5;
+                choseChain = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha7) && tiedChains.Contains(6))
+            {
+                chosenChain = 6;
+                choseChain = true;
+            }
+            yield return null;
+        }
+
+        mergeInfo.SetActive(false);
+
+        for (int i = 0; i < mergedChainInfo.Count; i++)
+        {
+            if (mergedChainInfo[i].Key == chosenChain)
+                chosenChainIndex = i;
+        }
+        MergeChain(chosenChainIndex, targetRow, targetCol);
+    }
+
     IEnumerator CreateChain(int targetRow, int targetCol, Collider2D tileTarget)
     {
         chainCreator.SetActive(true);
@@ -473,37 +451,37 @@ public class GridManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) && !chainsData.hotelChains[0].isActive)
             {
-                chainToAdd = 1;               
+                chainToAdd = 0;               
                 choseChain = true;            
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2) && !chainsData.hotelChains[1].isActive)
             {
-                chainToAdd = 2;
+                chainToAdd = 1;
                 choseChain = true;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3) && !chainsData.hotelChains[2].isActive)
             {
-                chainToAdd = 3;
+                chainToAdd = 2;
                 choseChain = true;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha4) && !chainsData.hotelChains[3].isActive)
             {
-                chainToAdd = 4;
+                chainToAdd = 3;
                 choseChain = true;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha5) && !chainsData.hotelChains[4].isActive)
             {
-                chainToAdd = 5;
+                chainToAdd = 4;
                 choseChain = true;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha6) && !chainsData.hotelChains[5].isActive)
             {
-                chainToAdd = 6;
+                chainToAdd = 5;
                 choseChain = true;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha7) && !chainsData.hotelChains[6].isActive)
             {
-                chainToAdd = 7;
+                chainToAdd = 6;
                 choseChain = true;
             }
             yield return null;
@@ -512,21 +490,21 @@ public class GridManager : MonoBehaviour
         chainsData.chainsAvail -= 1;
 
         chainCreator.SetActive(false);
-        chainsData.hotelChains[chainToAdd - 1].isActive = true;
+        chainsData.hotelChains[chainToAdd].isActive = true;
 
         // add last placed tile to the chain
-        grid[targetRow - 1].tiles[targetCol - 1].chain = (TilePool.Tile.Chains)chainToAdd;
+        grid[targetRow - 1].tiles[targetCol - 1].chain = (TilePool.Tile.Chains)chainToAdd + 1;
         grid[targetRow - 1].tiles[targetCol - 1].partOfChain = true;
         grid[targetRow - 1].tiles[targetCol - 1].isChainIndicator = true;
 
-        chainsData.hotelChains[chainToAdd - 1].size += 1;
-        chainsData.hotelChains[chainToAdd - 1].tilesInChain.Add(grid[targetRow - 1].tiles[targetCol - 1]);
+        chainsData.hotelChains[chainToAdd].size += 1;
+        chainsData.hotelChains[chainToAdd].tilesInChain.Add(grid[targetRow - 1].tiles[targetCol - 1]);
 
         // add chain indicator
-        tileTarget.GetComponent<SpriteRenderer>().color = chainsData.hotelChains[chainToAdd - 1].color;
-        tileTarget.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = chainsData.hotelChains[chainToAdd - 1].chainName[0].ToString();
+        tileTarget.GetComponent<SpriteRenderer>().color = chainsData.hotelChains[chainToAdd].color;
+        tileTarget.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = chainsData.hotelChains[chainToAdd].chainName[0].ToString();
 
-        chainToJoin = chainToAdd - 1;
+        chainToJoin = chainToAdd;
         DoBoardAction(targetRow - 1, targetCol - 1, (int)BoardActions.CreateChain);
 
         //Debug.Log($"NEW Chain Created! ({(TilePool.Tile.Chains)chainToAdd})"); // enum Chains starts with 'None'

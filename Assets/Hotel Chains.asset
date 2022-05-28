@@ -16,10 +16,52 @@ MonoBehaviour:
   hotelChains:
   - chainName: Tower
     color: {r: 1, g: 0, b: 0, a: 1}
-    size: 0
-    isActive: 0
+    size: 7
+    isActive: 1
     isSafe: 0
-    tilesInChain: []
+    tilesInChain:
+    - col: 6
+      row: 67
+      placed: 1
+      partOfChain: 1
+      chain: 1
+      isChainIndicator: 1
+    - col: 7
+      row: 67
+      placed: 1
+      partOfChain: 1
+      chain: 1
+      isChainIndicator: 0
+    - col: 5
+      row: 68
+      placed: 1
+      partOfChain: 1
+      chain: 1
+      isChainIndicator: 0
+    - col: 5
+      row: 69
+      placed: 1
+      partOfChain: 1
+      chain: 1
+      isChainIndicator: 0
+    - col: 4
+      row: 67
+      placed: 1
+      partOfChain: 1
+      chain: 1
+      isChainIndicator: 0
+    - col: 3
+      row: 67
+      placed: 1
+      partOfChain: 1
+      chain: 1
+      isChainIndicator: 0
+    - col: 5
+      row: 67
+      placed: 1
+      partOfChain: 1
+      chain: 1
+      isChainIndicator: 0
   - chainName: Luxor
     color: {r: 1, g: 0.8166218, b: 0, a: 1}
     size: 0
@@ -28,22 +70,10 @@ MonoBehaviour:
     tilesInChain: []
   - chainName: Festival
     color: {r: 0.03198047, g: 0.7264151, b: 0.21517491, a: 1}
-    size: 2
-    isActive: 1
+    size: 0
+    isActive: 0
     isSafe: 0
-    tilesInChain:
-    - col: 2
-      row: 65
-      placed: 1
-      partOfChain: 1
-      chain: 3
-      isChainIndicator: 1
-    - col: 1
-      row: 65
-      placed: 1
-      partOfChain: 1
-      chain: 3
-      isChainIndicator: 0
+    tilesInChain: []
   - chainName: American
     color: {r: 0, g: 0.11529214, b: 0.6698113, a: 1}
     size: 0

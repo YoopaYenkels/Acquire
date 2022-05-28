@@ -15,6 +15,8 @@ public class ChainsData : ScriptableObject
         public bool isActive;
         public bool isSafe;
 
+        public int stocks;
+
         public List<TilePool.Tile> tilesInChain;
     }
 
